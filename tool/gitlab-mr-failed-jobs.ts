@@ -1,7 +1,7 @@
 import { tool } from "@opencode-ai/plugin";
 import { GitLabClient } from "./GitLabClient";
 import type { BridgeJob, Job, PipelineDetails } from "./GitLabClient";
-import { resolveGitLabApiUrl } from "../tools/gitlab-helpers/resolveGitLabApiUrl";
+import { resolveGitLabApiUrl } from "./gitlab-helpers/resolveGitLabApiUrl";
 
 export default tool({
   description: "Get current failed CI/CD jobs in a GitLab Merge Request.",

@@ -2,7 +2,7 @@
 
 - All GitLab API calls must go through the shared client in `tool/GitLabClient`. Reuse it instead of creating new fetch logic so headers, pagination, and error handling stay consistent.
 - `GITLAB_TOKEN` is required for any GitLab REST access. Tools should validate it early and support overriding the API root via `GITLAB_API_URL` (defaults to `https://gitlab.com/api/v4`).
-- Call `resolveGitLabApiUrl()` from `tools/gitlab-helpers/resolveGitLabApiUrl.ts` whenever you need the API base so overrides via `GITLAB_API_URL`/`GITLAB_HOST` stay consistent across tools.
+- Call `resolveGitLabApiUrl()` from `tool/gitlab-helpers/resolveGitLabApiUrl.ts` whenever you need the API base so overrides via `GITLAB_API_URL`/`GITLAB_HOST` stay consistent across tools.
 - Tool outputs should be concise and, when listing jobs or pipelines, prefer Markdown tables like the one used in `tool/gitlab-mr-failed-jobs.ts` so results are easy to scan in the CLI.
 
 ## Custom Tool Instructions
