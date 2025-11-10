@@ -1,6 +1,7 @@
 import { tool } from "@opencode-ai/plugin";
 import { GitLabClient } from "./GitLabClient";
 import type { BridgeJob, Job, PipelineDetails } from "./GitLabClient";
+import { resolveGitLabApiUrl } from "../tools/gitlab-helpers/resolveGitLabApiUrl";
 
 export default tool({
   description: "Get current failed CI/CD jobs in a GitLab Merge Request.",
@@ -14,12 +15,8 @@ export default tool({
       throw new Error("GITLAB_TOKEN environment variable is required.");
     }
 
-    const baseUrl = process.env.GITLAB_HOST?.replace(/\/$/, "");
-    if (!baseUrl) {
-      throw new Error("GITLAB_HOST environment variable is required.");
-    }
-
-    const client = new GitLabClient(`${baseUrl}/api/v4`, token);
+    const baseUrl = resolveGitLabApiUrl();
+    const client = new GitLabClient(baseUrl, token);
 
     const mergeRequest = await client.getMergeRequest<MergeRequest>(
       projectId,
