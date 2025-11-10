@@ -62,6 +62,13 @@ export class GitLabClient {
     );
   }
 
+  async getJobTrace(projectId: number, jobId: number): Promise<string> {
+    const response = await this.fetch(
+      `/projects/${projectId}/jobs/${jobId}/trace`
+    );
+    return response.text();
+  }
+
   private async fetchJson<T>(
     path: string,
     searchParams?: Record<string, string | number | undefined>
